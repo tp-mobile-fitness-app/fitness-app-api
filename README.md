@@ -1,6 +1,7 @@
 # fitness-app-api
 
 `pipenv install` para instalar las dependencias en un ambiente virtual.
+
 `pipenv shell` para arrancar una shell dentro del ambiente virtual.
 
 _Dev:_ `uvicorn src.main:app --reload`
