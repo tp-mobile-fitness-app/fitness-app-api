@@ -5,6 +5,7 @@
 
 _Dev:_ `uvicorn src.main:app --reload`
 - Ejecuta la aplicacion y se recarga cuando detecta alguna modificación en el codigo.
+
 _Prod:_ `uvicorn src.main:app`
 - Ejecuta la aplicacion.
 
