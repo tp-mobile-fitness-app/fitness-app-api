@@ -1,0 +1,11 @@
+# DEPENDENCIAS
+
+fastapi
+gunicorn
+requests
+bson
+psutil
+netifaces
+stringcase
+opencv-python
+uvicorn

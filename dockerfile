@@ -1,0 +1,45 @@
+FROM python:3.8
+
+ARG TAG=local
+
+WORKDIR /usr/src/
+
+
+# VARIABLES PREDEFINIDAS
+ENV FITNESS_APP_API_VERSION=${TAG}
+
+ENV FITNESS_APP_API_PYTHON_HOST=0.0.0.0
+ENV FITNESS_APP_API_PYTHON_PORT=5000
+ENV FITNESS_APP_API_PYTHON_GUNICORN_WORKERS=1
+ENV FITNESS_APP_API_PYTHON_GUNICORN_CONNECTIONS=1000
+ENV FITNESS_APP_API_PYTHON_NOMBRE_APP=app
+ENV FITNESS_APP_API_PYTHON_NOMBRE_FUNCION_APP=app
+
+
+# EJECUCION
+CMD gunicorn -k uvicorn.workers.UvicornWorker \
+    -b ${FITNESS_APP_API_PYTHON_HOST}:${FITNESS_APP_API_PYTHON_PORT} \
+    --reload \
+    --workers=${FITNESS_APP_API_PYTHON_GUNICORN_WORKERS} \
+    --worker-connections=${FITNESS_APP_API_PYTHON_GUNICORN_CONNECTIONS} \
+    ${FITNESS_APP_API_PYTHON_NOMBRE_APP}:${FITNESS_APP_API_PYTHON_NOMBRE_FUNCION_APP}
+
+EXPOSE ${FITNESS_APP_API_PYTHON_PORT}
+
+
+# DEPENDENCIAS
+RUN pip install compile --upgrade pip
+
+COPY ./requirements.txt .
+COPY ./files ./files
+
+RUN pip install -r requirements.txt
+RUN rm requirements.txt
+
+
+# COMPILACION
+COPY ./apps ./src/apps
+COPY ./app.py ./src
+
+RUN python -m compile -b -f -o ./dist ./src
+RUN mv -f ./dist/src/* .
