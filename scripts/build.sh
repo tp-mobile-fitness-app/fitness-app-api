@@ -1,6 +1,6 @@
 source ./scripts/ambiente.sh
 
 docker build \
--f ./dockerfile-bash \
+-f ./dockerfile \
 --build-arg TAG=$VERSION \
--t $DOCKER_HUB_REPO/$DOCKER_HUB_GROUP/$PROYECTO:$VERSION .
+-t $DOCKER_HUB_REPO/$PROYECTO:$VERSION .
