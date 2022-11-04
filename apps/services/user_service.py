@@ -5,7 +5,7 @@ ALL_USERS=[]
 
 def get_all_users():
     global ALL_USERS
-    return ALL_USERE
+    return ALL_USERS
 
 def update_user(user:User):
     global ALL_USERS

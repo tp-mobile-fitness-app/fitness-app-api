@@ -6,6 +6,7 @@ from fastapi import APIRouter
 from fastapi import Request
 from typing import List
 from apps.models.gym.gym import GymClass,Gym
+from apps.models.gym.reservation import Reservation
 
 
 import apps.configs.configuration as conf
@@ -32,11 +33,9 @@ def get_classes(gym_id):
     return get_valid_rest_object(gym.classes)
 
 @blue_print.post('/{gym_id}/classes/{class_id}/reserve')
-def reserve_class(gym_id,class_id,request:Request):
-    body = get_body(request)
+def reserve_class(gym_id,class_id,reservation:Reservation):
 
-    user_id = body["user_id"]
-    user = user_service.get_user(user_id)
+    user = user_service.get_user(reservation.user_id)
 
     gym_service.reserve(gym_id,class_id,user)
 
