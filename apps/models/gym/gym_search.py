@@ -27,5 +27,5 @@ class GymSearch(BaseModel):
             "search_radius":self.search_radius
         }
     
-    def from_dict(spec):
+    def from_dict(spec:dict):
         return GymSearch(**spec)

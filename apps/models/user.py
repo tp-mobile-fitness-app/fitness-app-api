@@ -27,5 +27,6 @@ class User(BaseModel):
             "mail" :self.mail
         }
 
-    def from_dict(spec):
+    def from_dict(spec:dict):
+        spec["classes"] = [GymClass.from_dict(c) for c in spec.get("classes",[])]
         return User(**spec)

@@ -1,13 +1,13 @@
 from datetime import datetime
 from typing import List
 from apps.models.location import Location
+from apps.models.schedule import Schedule
 from pydantic import BaseModel
 
 
 class GymClass(BaseModel):
     id : str = None
-    start_date : datetime = None
-    end_date : datetime = None
+    schedules: List[Schedule] = [] 
     professor : str
     type : str
     max_capacity : int = 1
@@ -20,23 +20,23 @@ class GymClass(BaseModel):
         self.people+=1
 
     def collides(self,other_class:"GymClass"):
-        includes_other = self.start_date<=other_class.start_date and other_class.start_date<=self.end_date
-        other_includes_me = other_class.start_date<=self.start_date and self.start_date<=other_class.end_date
-
-        return includes_other or other_includes_me
+        collide = True
+        for s in self.schedules:
+            collide = collide and any(s.collides(s2) for s2 in other_class.schedules)
+        return collide
 
     def to_dict(self):
         return {
             "id": self.id ,
-            "start_date": self.start_date,
-            "end_date": self.end_date,
             "professor": self.professor ,
             "type": self.type ,
             "max_capacity": self.max_capacity,
+            "schedules": [s.to_dict() for s in self.schedules],
             "people": self.people
         }
     
-    def from_dict(spec):
+    def from_dict(spec:dict):
+        spec["schedules"] = [Schedule.from_dict(s) for s in spec.get("schedules",[])]
         return GymClass(**spec)
 
 class Gym(BaseModel):
@@ -52,5 +52,6 @@ class Gym(BaseModel):
             "location": self.location.to_dict()
         }
     
-    def from_dict(spec):
+    def from_dict(spec:dict):
+        spec["classes"] = [GymClass.from_dict(c) for c in spec.get("classes",[])]
         return Gym(**spec)
