@@ -4,7 +4,7 @@ import apps.configs.configuration as var
 from apps.utils.logger_util import get_logger
 from apps.models.exception import AppException
 
-blue_print = APIRouter(prefix='')
+blue_print = APIRouter(prefix='',tags=["monitoring"])
 
 logger = get_logger()
 

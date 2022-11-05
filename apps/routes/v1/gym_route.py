@@ -15,7 +15,7 @@ from apps.configs.vars import Vars
 URI = "/gyms"
 VERSION = "/v1"
 
-blue_print = APIRouter(prefix=conf.get(Vars.API_BASE_PATH)+VERSION+URI)
+blue_print = APIRouter(prefix=conf.get(Vars.API_BASE_PATH)+VERSION+URI,tags=["gyms"])
 
 
 @blue_print.get('', response_model=List[Gym])
