@@ -26,6 +26,9 @@ def get_gym(gym_id:str)->Gym:
             return g
     return None
 
+def get_image(gym_id:str)->str:
+    return get_gym(gym_id).image
+
 def get_gym_class(gym_id,class_id):
     return list(filter(lambda c:c.id==class_id,get_gym(gym_id).classes))[0]
 
@@ -47,4 +50,13 @@ def reserve(gym_id,class_id,user:User):
         user_service.update_user(user)
     else:
         raise AppException(409,"No hay lugar disponible en la clase")
+
+def unbook(gym_id,class_id,user:User):
+    gym_class = get_gym_class(gym_id,class_id)
+
+    user.unschedule(gym_class)
+    gym_class.unbook_place(user)
+
+    update_gym_class(gym_id,gym_class)
+    user_service.update_user(user)
 

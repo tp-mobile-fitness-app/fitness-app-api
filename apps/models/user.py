@@ -18,6 +18,14 @@ class User(BaseModel):
                 
         self.classes.append(gym_class)
 
+    def unschedule(self,gym_class:GymClass):
+        exists_class = any(c.id==gym_class.id for c in self.classes)
+
+        if not exists_class:
+            raise AppException(409,"Usuario no contiene clase.")
+
+        self.classes = list(filter(lambda c: c.id==gym_class.id,self.classes))
+
     def to_dict(self):
         return {
             "id" :self.id,

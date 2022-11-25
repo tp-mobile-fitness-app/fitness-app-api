@@ -1,9 +1,13 @@
 from pydantic import BaseModel
+import datetime
+from dateutil.relativedelta import relativedelta
+import math
 
 class Schedule(BaseModel):
     start_hour : float
     end_hour : float
     week_day: int
+    next_date: datetime.datetime = None
 
     def collides(self,other_sched:"Schedule"):
         if self.week_day != other_sched.week_day:
@@ -14,10 +18,31 @@ class Schedule(BaseModel):
 
         return includes_other or other_includes_me
 
+    def next_date_from_now(self):
+        today = datetime.datetime.today()
+        if today.weekday()<=self.week_day:
+            next_date=today+datetime.timedelta(days = self.week_day-today.weekday())
+
+        else:
+            next_date=today+datetime.timedelta(days = 7+self.week_day-today.weekday())
+
+        minutes, hour = math.modf(self.start_hour)
+        minutes = round(minutes*60)
+
+        return datetime.datetime(next_date.year,next_date.month,next_date.day,round(hour),round(minutes))
+
+        
+
+        year = today.year
+
+        return datetime.date(year,1,today.weekday())+relativedelta(weeks=+today.isocalendar()[1]+1)
+
+
     def to_dict(self):
         return {
             "start_hour" : self.start_hour,
             "end_hour" : self.end_hour,
+            "next_date":self.next_date_from_now(),
             "week_day": self.week_day
         }
 

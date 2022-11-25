@@ -32,11 +32,26 @@ def get_classes(gym_id):
 
     return get_valid_rest_object(gym.classes)
 
+@blue_print.get('/{gym_id}/image', response_model=str)
+def get_image(gym_id):
+    image = gym_service.get_image(gym_id)
+
+    return image
+
 @blue_print.post('/{gym_id}/classes/{class_id}/reserve')
 def reserve_class(gym_id,class_id,reservation:Reservation):
 
     user = user_service.get_user(reservation.user_id)
 
     gym_service.reserve(gym_id,class_id,user)
+
+    return get_valid_rest_object({})
+
+@blue_print.post('/{gym_id}/classes/{class_id}/unbook')
+def unbook_class(gym_id,class_id,reservation:Reservation):
+
+    user = user_service.get_user(reservation.user_id)
+
+    gym_service.unbook(gym_id,class_id,user)
 
     return get_valid_rest_object({})
