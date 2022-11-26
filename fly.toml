@@ -1,7 +1,7 @@
 app = "utn-fitness-api"
 
 [build]
-  image = "alexiscaspell/fitness-app-api:0.2.1"
+  image = "alexiscaspell/fitness-app-api:0.2.2"
 
 [[services]]
   internal_port = 5000
