@@ -98,8 +98,8 @@ def load_data():
                 "week_day":2
             }
         ],
-        "professor":"pirulo",
-        "type":"yoga",
+        "professor":"Pirulo",
+        "type":"Yoga",
         "description":"YOGA INTEGRAL: Auna diferentes estilos de yoga. Los invito a escucharse, descubrir y ampliar espacios en su interior. Transitaremos Asanas, Pranayamas y relajacion.",
         "max_capacity":12
     })
@@ -122,9 +122,9 @@ def load_data():
                 "week_day":5
             }
         ],
-        "professor":"gonzalito",
+        "professor":"Gonzalito",
         "description":"Ofrezco clases de Hapkido (arte marcial tradicional) enfocado a la defensa y al desarrollo personal de cada alumno.",
-        "type":"clase privada",
+        "type":"Clase Privada",
         "max_capacity":1
     })
     class3 = GymClassMock.from_dict({
@@ -136,9 +136,9 @@ def load_data():
                 "week_day":6
             },
         ],
-        "professor":"profesor x",
+        "professor":"Profesor X",
         "description":"Entrenamiento grupal de zona media, algunos ejercicios de pilates y yoga, flexibilidad y movilidad articular.",
-        "type":"x men first class",
+        "type":"X Men First Class",
         "max_capacity":3
     })
     class4 = GymClassMock.from_dict({
@@ -150,9 +150,9 @@ def load_data():
                 "week_day":6
             },
         ],
-        "professor":"romina martinez",
+        "professor":"Romina Martinez",
         "description":"Aprende Tae bo y convertite en una persona mas segura de vos mismo.",
-        "type":"tae bo",
+        "type":"Tae Bo",
         "max_capacity":20
     })
     class5 = GymClassMock.from_dict({
@@ -164,9 +164,9 @@ def load_data():
                 "week_day":2
             },
         ],
-        "professor":"julian alvarez",
+        "professor":"Julian Alvarez",
         "description":"Box Recreativo o MMA + Funcional. Aprende a ser un guerrero y cuidar tu estado fisico de forma inteligente y con resultados permanentes.",
-        "type":"boxeo",
+        "type":"Boxeo",
         "max_capacity":10
     })
 
@@ -179,15 +179,15 @@ def load_data():
                 "week_day":5
             },
         ],
-        "professor":"susana gimenez",
+        "professor":"Susana Gimenez",
         "description":"Clases con actividades variadas para ejercitar el cuerpo en tiempos de Home Office.",
-        "type":"gimnasia postural",
+        "type":"Gimnasia Postural",
         "max_capacity":30
     })
 
     gym1 = Gym.from_dict({
         "id":1,
-        "name":"el gym de lo pibe",
+        "name":"El gym de lo pibe",
         "image":image_b64(f"{FILES_PATH}/gym1.jpg"),
         "location": {
             "latitude":random_latitude(),
@@ -198,7 +198,7 @@ def load_data():
     })
     gym2 = Gym.from_dict({
         "id":2,
-        "name":"golds gym",
+        "name":"Golds gym",
         "image":image_b64(f"{FILES_PATH}/gym2.jpg"),
         "location": {
             "latitude":random_latitude(),
@@ -209,7 +209,7 @@ def load_data():
     })
     gym3 = Gym.from_dict({
         "id":3,
-        "name":"gym 24/7",
+        "name":"Gym 24/7",
         "image":image_b64(f"{FILES_PATH}/gym3.jpg"),
         "location": {
             "latitude":random_latitude(),
@@ -221,7 +221,7 @@ def load_data():
     
     gym4 = Gym.from_dict({
         "id":4,
-        "name":"mario gym bros",
+        "name":"Mario gym bros",
         "image":image_b64(f"{FILES_PATH}/gym4.jpg"),
         "location": {
             "latitude":90,
@@ -233,7 +233,7 @@ def load_data():
 
     gym5 = Gym.from_dict({
         "id":5,
-        "name":"gimnasio goku",
+        "name":"Gimnasio goku",
         "image":image_b64(f"{FILES_PATH}/gym5.jpg"),
         "location": {
             "latitude":random_latitude(),

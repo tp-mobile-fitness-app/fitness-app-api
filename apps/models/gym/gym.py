@@ -19,10 +19,10 @@ class GymClass(BaseModel):
         return self.people<self.max_capacity
 
     def reserve_place(self,user):
-        self.people+=1
+        self.people = self.max_capacity if self.people==self.max_capacity else self.people+1
         
     def unbook_place(self,user):
-        self.people-=1
+        self.people = 0 if self.people==0 else self.people-1
 
     def collides(self,other_class:"GymClass"):
         return self.schedule.collides(other_class.schedule)

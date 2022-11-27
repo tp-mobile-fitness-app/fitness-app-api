@@ -24,7 +24,7 @@ class User(BaseModel):
         if not exists_class:
             raise AppException(409,"Usuario no contiene clase.")
 
-        self.classes = list(filter(lambda c: c.id==gym_class.id,self.classes))
+        self.classes = list(filter(lambda c: c.id!=gym_class.id,self.classes))
 
     def to_dict(self):
         return {
