@@ -100,7 +100,7 @@ def load_data():
         ],
         "professor":"Pirulo",
         "type":"Yoga",
-        "description":"YOGA INTEGRAL: Auna diferentes estilos de yoga. Los invito a escucharse, descubrir y ampliar espacios en su interior. Transitaremos Asanas, Pranayamas y relajacion.",
+        "description":"INTEGRAL YOGA: Combines different styles of yoga. I invite you to listen, discover and expand spaces within. We will transit Asanas, Pranayamas and relaxation.",
         "max_capacity":12
     })
     class2 = GymClassMock.from_dict({
@@ -123,8 +123,8 @@ def load_data():
             }
         ],
         "professor":"Gonzalito",
-        "description":"Ofrezco clases de Hapkido (arte marcial tradicional) enfocado a la defensa y al desarrollo personal de cada alumno.",
-        "type":"Clase Privada",
+        "description":"I offer Hapkido classes (traditional martial art) focused on the defense and personal development of each student.",
+        "type":"Private Class",
         "max_capacity":1
     })
     class3 = GymClassMock.from_dict({
@@ -136,8 +136,8 @@ def load_data():
                 "week_day":6
             },
         ],
-        "professor":"Profesor X",
-        "description":"Entrenamiento grupal de zona media, algunos ejercicios de pilates y yoga, flexibilidad y movilidad articular.",
+        "professor":"Professor X",
+        "description":"Middle zone group training, some Pilates and yoga exercises, flexibility and joint mobility.",
         "type":"X Men First Class",
         "max_capacity":3
     })
@@ -151,7 +151,7 @@ def load_data():
             },
         ],
         "professor":"Romina Martinez",
-        "description":"Aprende Tae bo y convertite en una persona mas segura de vos mismo.",
+        "description":"Learn Tae bo and become a more confident person of yourself.",
         "type":"Tae Bo",
         "max_capacity":20
     })
@@ -165,8 +165,8 @@ def load_data():
             },
         ],
         "professor":"Julian Alvarez",
-        "description":"Box Recreativo o MMA + Funcional. Aprende a ser un guerrero y cuidar tu estado fisico de forma inteligente y con resultados permanentes.",
-        "type":"Boxeo",
+        "description":"Recreational Box or MMA + Functional. Learn to be a warrior and take care of your physical condition intelligently and with permanent results.",
+        "type":"Boxing",
         "max_capacity":10
     })
 
@@ -180,21 +180,21 @@ def load_data():
             },
         ],
         "professor":"Susana Gimenez",
-        "description":"Clases con actividades variadas para ejercitar el cuerpo en tiempos de Home Office.",
-        "type":"Gimnasia Postural",
+        "description":"Classes with varied activities to exercise the body in Home Office times.",
+        "type":"Posture Gymnastics",
         "max_capacity":30
     })
 
     gym1 = Gym.from_dict({
         "id":1,
-        "name":"El gym de lo pibe",
+        "name":"The kid's Gym",
         "image":image_b64(f"{FILES_PATH}/gym1.jpg"),
         "location": {
             "latitude":random_latitude(),
             "longitude":random_longitude()
         },
-        "description": "El gym de los pibe, para los pibe",
-        "contact_info":"Tel: 01157453846 Mail: lopibe@gmail.com"
+        "description": "The kids' gym, for the kids",
+        "contact_info":"Tel: 01157453846 Mail: kidsgym@gmail.com"
     })
     gym2 = Gym.from_dict({
         "id":2,
@@ -204,7 +204,7 @@ def load_data():
             "latitude":random_latitude(),
             "longitude":random_longitude()
         },
-        "description": "Consegui tu fisico deseado, convertite en el 1% de la poblacion.",
+        "description": "The gym for the elite of the elite.",
         "contact_info":"Tel: 01157986138 Mail: golds@gmail.com"
     })
     gym3 = Gym.from_dict({
@@ -215,31 +215,31 @@ def load_data():
             "latitude":random_latitude(),
             "longitude":random_longitude()
         },
-        "description": "Cuando quieras, donde quieras. El gym que te acompaña a todos lados.",
+        "description": "Get your desired physique, become 1% of the population.",
         "contact_info":"Tel: 01158369264 Mail: seveneleven.gym@gmail.com"
     })
     
     gym4 = Gym.from_dict({
         "id":4,
-        "name":"Mario gym bros",
+        "name":"Mario Gym Bros",
         "image":image_b64(f"{FILES_PATH}/gym4.jpg"),
         "location": {
             "latitude":90,
             "longitude":70
         },
-        "description": "Salva a la princesa, convertite en donkey kong.",
+        "description": "Save the princess, become Donkey Kong.",
         "contact_info":"Tel: 01152936485 Mail: bros.gym@gmail.com"
     })
 
     gym5 = Gym.from_dict({
         "id":5,
-        "name":"Gimnasio goku",
+        "name":"Goku gym",
         "image":image_b64(f"{FILES_PATH}/gym5.jpg"),
         "location": {
             "latitude":random_latitude(),
             "longitude":random_longitude()
         },
-        "description": "Junta todas tus fuerzas, solo para guerreros de clase alta.",
+        "description": "Gather all your forces, only for high-class warriors.",
         "contact_info":"Tel: 01153574954 Mail: saiyan.gym@gmail.com"
     })
 
