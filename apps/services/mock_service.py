@@ -192,7 +192,9 @@ def load_data():
         "location": {
             "latitude":random_latitude(),
             "longitude":random_longitude()
-        }
+        },
+        "description": "El gym de los pibe, para los pibe",
+        "contact_info":"Tel: 01157453846 Mail: lopibe@gmail.com"
     })
     gym2 = Gym.from_dict({
         "id":2,
@@ -201,7 +203,9 @@ def load_data():
         "location": {
             "latitude":random_latitude(),
             "longitude":random_longitude()
-        }
+        },
+        "description": "Consegui tu fisico deseado, convertite en el 1% de la poblacion.",
+        "contact_info":"Tel: 01157986138 Mail: golds@gmail.com"
     })
     gym3 = Gym.from_dict({
         "id":3,
@@ -210,7 +214,9 @@ def load_data():
         "location": {
             "latitude":random_latitude(),
             "longitude":random_longitude()
-        }
+        },
+        "description": "Cuando quieras, donde quieras. El gym que te acompaña a todos lados.",
+        "contact_info":"Tel: 01158369264 Mail: seveneleven.gym@gmail.com"
     })
     
     gym4 = Gym.from_dict({
@@ -220,7 +226,9 @@ def load_data():
         "location": {
             "latitude":90,
             "longitude":70
-        }
+        },
+        "description": "Salva a la princesa, convertite en donkey kong.",
+        "contact_info":"Tel: 01152936485 Mail: bros.gym@gmail.com"
     })
 
     gym5 = Gym.from_dict({
@@ -230,7 +238,9 @@ def load_data():
         "location": {
             "latitude":random_latitude(),
             "longitude":random_longitude()
-        }
+        },
+        "description": "Junta todas tus fuerzas, solo para guerreros de clase alta.",
+        "contact_info":"Tel: 01153574954 Mail: saiyan.gym@gmail.com"
     })
 
     for c in class1.to_gym_classes():
@@ -245,8 +255,6 @@ def load_data():
         gym4.add_class(c) 
     for c in class6.to_gym_classes():
         gym5.add_class(c) 
-
-    
 
     gym_service.ALL_GYMS = [gym1,gym2,gym3,gym4,gym5]
     user_service.ALL_USERS = [user1,user2,user3]

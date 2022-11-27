@@ -49,6 +49,8 @@ class Gym(BaseModel):
     location : Location
     image : str = None
     classes : List[GymClass] = []
+    description : str = ""
+    contact_info : str = ""
 
     def add_class(self,some_class:GymClass):
         some_class.gym_id = self.id
@@ -58,7 +60,9 @@ class Gym(BaseModel):
         return {
             "id": self.id,
             "name": self.name,
-            "location": self.location.to_dict()
+            "location": self.location.to_dict(),
+            "description": self.description,
+            "contact_info": self.contact_info
         }
     
     def from_dict(spec:dict):
