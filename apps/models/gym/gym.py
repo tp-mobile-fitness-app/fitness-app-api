@@ -8,7 +8,7 @@ from pydantic import BaseModel
 class GymClass(BaseModel):
     id : str = None
     gym_id : str = None
-    schedules: List[Schedule] = [] 
+    schedule: Schedule = None 
     professor : str
     type : str
     description: str = ""
@@ -25,10 +25,7 @@ class GymClass(BaseModel):
         self.people-=1
 
     def collides(self,other_class:"GymClass"):
-        collide = True
-        for s in self.schedules:
-            collide = collide and any(s.collides(s2) for s2 in other_class.schedules)
-        return collide
+        return self.schedule.collides(other_class.schedule)
 
     def to_dict(self):
         return {
@@ -38,12 +35,12 @@ class GymClass(BaseModel):
             "type": self.type ,
             "description":self.description,
             "max_capacity": self.max_capacity,
-            "schedules": [s.to_dict() for s in self.schedules],
+            "schedule": self.schedule.to_dict(),
             "people": self.people
         }
     
     def from_dict(spec:dict):
-        spec["schedules"] = [Schedule.from_dict(s) for s in spec.get("schedules",[])]
+        spec["schedule"] = Schedule.from_dict(spec["schedule"])
         return GymClass(**spec)
 
 class Gym(BaseModel):

@@ -1,11 +1,54 @@
 from apps.models.gym.gym import Gym, GymClass
+from apps.models.schedule import Schedule
 from apps.models.user import User
 import apps.services.gym_service as gym_service
 import apps.services.user_service as user_service
 import random
 import base64
+from pydantic import BaseModel
+from typing import List
 
 FILES_PATH="files"
+
+
+
+class GymClassMock(BaseModel):
+    ids : str = None
+    gym_id : str = None
+    schedules: List[Schedule] = [] 
+    professor : str
+    type : str
+    description: str = ""
+    max_capacity : int = 1
+    people : int = 0
+
+    def to_gym_classes(self):
+        classes = []
+        for i,s in enumerate(self.schedules):
+            id = self.ids.split(",")[i]
+            classes.append(self.new_gym_class(id,s))
+        return classes
+
+    def new_gym_class(self,id:str,schedule:Schedule):
+        self_dict = self.to_dict()
+        self_dict["id"] = id
+        self_dict["schedule"] = schedule.to_dict()
+
+        return GymClass.from_dict(self_dict)
+
+    def to_dict(self):
+        return {
+            "gym_id": self.gym_id ,
+            "professor": self.professor ,
+            "type": self.type ,
+            "description":self.description,
+            "max_capacity": self.max_capacity,
+            "people": self.people
+        }
+    
+    def from_dict(spec:dict):
+        spec["schedules"] = [Schedule.from_dict(s) for s in spec["schedules"]]
+        return GymClassMock(**spec)
 
 def image_b64(image):
     with open(image, "rb") as img_file:
@@ -41,8 +84,8 @@ def load_data():
         "mail":"guitarhero@gmail.com"
     })
 
-    class1 = GymClass.from_dict({
-        "id":1,
+    class1 = GymClassMock.from_dict({
+        "ids":"1,2",
         "schedules":[
             {
                 "start_hour":12,
@@ -60,8 +103,8 @@ def load_data():
         "description":"YOGA INTEGRAL: Auna diferentes estilos de yoga. Los invito a escucharse, descubrir y ampliar espacios en su interior. Transitaremos Asanas, Pranayamas y relajacion.",
         "max_capacity":12
     })
-    class2 = GymClass.from_dict({
-        "id":2,
+    class2 = GymClassMock.from_dict({
+        "ids":"3,4,5",
             "schedules":[
             {
                 "start_hour":9,
@@ -84,8 +127,8 @@ def load_data():
         "type":"clase privada",
         "max_capacity":1
     })
-    class3 = GymClass.from_dict({
-        "id":3,
+    class3 = GymClassMock.from_dict({
+        "ids":"6",
         "schedules":[
             {
                 "start_hour":10,
@@ -98,8 +141,8 @@ def load_data():
         "type":"x men first class",
         "max_capacity":3
     })
-    class4 = GymClass.from_dict({
-        "id":4,
+    class4 = GymClassMock.from_dict({
+        "ids":"7",
         "schedules":[
             {
                 "start_hour":10,
@@ -112,8 +155,8 @@ def load_data():
         "type":"tae bo",
         "max_capacity":20
     })
-    class5 = GymClass.from_dict({
-        "id":5,
+    class5 = GymClassMock.from_dict({
+        "ids":"8",
         "schedules":[
             {
                 "start_hour":20,
@@ -127,8 +170,8 @@ def load_data():
         "max_capacity":10
     })
 
-    class6 = GymClass.from_dict({
-        "id":6,
+    class6 = GymClassMock.from_dict({
+        "ids":"9",
         "schedules":[
             {
                 "start_hour":15,
@@ -190,12 +233,20 @@ def load_data():
         }
     })
 
-    gym1.add_class(class1)
-    gym1.add_class(class2)
-    gym2.add_class(class3)
-    gym3.add_class(class4)
-    gym4.add_class(class5)
-    gym5.add_class(class6)
+    for c in class1.to_gym_classes():
+        gym1.add_class(c) 
+    for c in class2.to_gym_classes():
+        gym1.add_class(c) 
+    for c in class3.to_gym_classes():
+        gym2.add_class(c) 
+    for c in class4.to_gym_classes():
+        gym3.add_class(c) 
+    for c in class5.to_gym_classes():
+        gym4.add_class(c) 
+    for c in class6.to_gym_classes():
+        gym5.add_class(c) 
+
+    
 
     gym_service.ALL_GYMS = [gym1,gym2,gym3,gym4,gym5]
     user_service.ALL_USERS = [user1,user2,user3]
