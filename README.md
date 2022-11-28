@@ -1,6 +1,6 @@
 # FITNESS-APP-API
 
-> Proyecto base para aplicaciones REST con python
+> API REST realizada para aplicacion fitness-app de la asignatura de Desarrollo de Apps Moviles en UTN FRBA
 
 
 ![alt text](img/python.png)

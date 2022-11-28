@@ -1,5 +1,5 @@
 PROYECTO=fitness-app-api
-VERSION=0.3.3
+VERSION=0.3.4
 
 DOCKER_HUB_REPO=alexiscaspell
 DOCKER_HUB_USER=alexiscaspell

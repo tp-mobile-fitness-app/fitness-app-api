@@ -224,8 +224,8 @@ def load_data():
         "name":"Mario Gym Bros",
         "image":image_b64(f"{FILES_PATH}/gym4.jpg"),
         "location": {
-            "latitude":90,
-            "longitude":70
+            "latitude":random_latitude(),
+            "longitude":random_longitude()
         },
         "description": "Save the princess, become Donkey Kong.",
         "contact_info":"Tel: 01152936485 Mail: bros.gym@gmail.com"
